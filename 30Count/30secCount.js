@@ -7,7 +7,6 @@ function getBgimg() {
     g.drawImage(require("Storage").read("myapps_bg.img"), 0, 0);
     g.setColor(1, 1, 1);
     g.setFont("Vector", 40);
-    //g.clearRect(5,40,60,80);
 }
 
 var ang = 0;
@@ -24,7 +23,6 @@ var counter = 30;
 var counterInterval;
 
 function outOfTime() {
-    //E.showMessage("Out of Time!", "My Timer");
     Bangle.buzz();
     Bangle.beep(200, 3000);
     //.then(() => new Promice(resolve => setTimeout(resolve,200)))
@@ -32,9 +30,6 @@ function outOfTime() {
     // again, 10 secs later
     //setTimeout(outOfTime, 10000);
     getBgimg();
-    //g.setFont("6x8",3);
-    //g.drawString("button",90,60);
-    //g.drawString("= again",90,90);
 }
 
 function countDown() {
@@ -56,7 +51,6 @@ function countDown() {
     g.setFont("6x8", 4);
     g.setColor(1, 1, 1);
     g.drawString(counter, 35, 60);
-    //Bangle.setLCDPower(1);
     g.setColor(0, 0, 0);
     g.drawString("Now", 130, 60);
     g.setFont("6x8", 3);
