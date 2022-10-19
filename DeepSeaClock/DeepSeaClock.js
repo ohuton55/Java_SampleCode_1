@@ -73,6 +73,11 @@ var coffee = {
   transparent : 0,
   buffer : require("heatshrink").decompress((atob("AGN////AwcDAwP//AHCj4HC/wWFAAOAA4IGD//ggEB//wEQQDDEYYHBg4rDAgUHBQI7D8AHG/AXF//8g5DDJYP+BQPAIYf+LwYGC/4HF/E/A5vwA59/N4IHEvwHG/wHFK4IHHS4qxCA4p9BV4hsCA4q/GPYgeEN40Ah4+Gcwf//onBn+HCwd/A4IgD+EfwBwE+EP4F8HAbVB4AxBJAXAgfgA4nwA4JJBF4YPDA44XFF4JRCF4V+NIT6BH4M/wD/CKoOAj6CCRgQRBFAIABgYZBg//DAU/P4JmBAYILBJoKnISAgjDUwgACVIQGDAFwA="))
 )};
+var rash = {
+  width : 64, height : 64, bpp : 1,
+  transparent : 0,
+  buffer : require("heatshrink").decompress((atob("AAfgAwsH/AHFh/8A43+A4sfjwNE//+hwNE///74HG/4HDn4HC4AHGIAYHDHAYHDDAcBA4fwIAggFgF/A4JhEDIRpFDIJxGv4HGgIHGgEIViJ3DJ4ZfEA5QXHA/4H08AHJcwYH/A/HAA4MHA60DA4eAA4MBA4YGBAAIGC/wFB"))
+)};
 const fish1 = [img11, img12];
 const fish2 = [img21, img22];
 const fish3 = [img31, img32];
@@ -80,7 +85,7 @@ const fish4 = [img41, img42];
 const fish5 = [img51, img52];
 const fish6 = [img61, img62];
 var coffeeMsg = "let's take a break!";
-var TrashMsg = "Throw away combustible garbage!;
+var TrashMsg = "Trash,BURN!";
 var mokuY = 80;
 var cMsgX = 100;
 var msgCnt1 = 0;
@@ -103,7 +108,7 @@ let i3 = 1;
 let i4 = 1;
 let i5 = 1;
 let i6 = 1;
-require("FontCopasetic40x58Numeric").add(Graphics);
+
 function Fishers() {
   g.clearRect(0,22,176,176);
   var date = new Date();
@@ -204,6 +209,7 @@ function Fishers() {
     x6 = 200;
     y6 = 200;
   }
+  require("FontCopasetic40x58Numeric").add(Graphics); 
   g.setFont("Copasetic40x58Numeric");
   g.drawString(hours,g.getWidth()/4.5,g.getHeight()/3.5, true);
   g.drawString(minutes,g.getWidth()/2,g.getHeight()/2.5, true);
@@ -249,13 +255,13 @@ function Fishers() {
       cMsgX = 180;
     }
   }
-}
+    if (dayOfWeekStr == "tue" || dayOfWeekStr == "thu"){
+        if (hours == 8 && minutes >= 10 && minutes <= 15){
 
-    if (hours == 8 && minutes >= 0 && minutes <= 5){
+        g.clearRect(14,25,160,160);
         g.drawImage(moku,73,mokuY,{scale:0.8});
         g.clearRect(65,90,100,100);
-        g.drawImage(coffee,55,80,true);
-        g.drawString(coffeeMsg,cMsgX,140,true);
+        g.drawImage(trash,55,80,true);
         g.drawString(TrashMsg,cMsgX,140,true);
         g.clearRect(0,140,14,155);
         g.clearRect(160,140,180,155);
@@ -288,8 +294,11 @@ function Fishers() {
     if (cMsgX <= -100){
       cMsgX = 180;
     }
+   
+   }
   }
 }
+
 g.clear();
 Fishers();
 var secondInterval = setInterval(Fishers, 500);
