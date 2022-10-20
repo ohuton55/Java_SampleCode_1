@@ -231,7 +231,7 @@ function Fishers() {
       }
     }
 
-    mokuY = mokuY - 2;
+    mokuY = mokuY - 4;
     cMsgX = cMsgX - 7;
 
     if (mokuY <= 50){
