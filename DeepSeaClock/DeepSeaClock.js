@@ -79,10 +79,24 @@ var trash = {
   buffer : require("heatshrink").decompress((atob("AAU//AHG/gHFv/+A4t8nwHMgP//+AEwgHBEAcPAwIAB+AtCA4f/A4IGEA4IlCAAeAA54fHACAXHA55aCMgQHxuAHDhwHCg0BwFgA4cOA4IDBA8N4F4ceA8M4A5ccA7UHA4PgA7U8A4c8A7McA5c4A4UDA4PAA4bfDA7SaCVgQHJh+AAYMB+ADBg//AAXgA4MDA4fADYQHDAoIA=="))
 )};
 var flame = {
-  width : 48, height : 48, bpp : 3,
+  width : 48, height : 48, bpp : 1,
   transparent : 0,
-  buffer : require("heatshrink").decompress((atob("AA0BCKFJCB8CCMUSCPMkCKOACJkgUgIROkmSAQIRvWYIRDdJoRNpARHgIyHCIUJCISACAQJWFCJI4GyQRIAoJuEggRHEAIRQwQCByARDBYQRGAQQRHkChCEAQRKYQgRQUguSCASDBCIxKFCJKeDCJ4ACEwQRFoACBSQQLFApAAFCNKPCCJBZFCIVACJKzGCMMERgwACd4QRVgDCBCA0Cd4QRGaggABiQRHBBAaIFgR0GHw5QCVQawCMRALCCgQCCTBDgCCIrgISQQRERgpuINBA4JIg4"))
+  palette : new Uint16Array([65535,64576]),
+  buffer : require("heatshrink").decompress((atob("AAXAAgcBAokDAovgAocHAokPAovwAon4Aon8Aon+Aon/AoeP/+AIAXP/48CAoQwCgfn/4wCg4FHGwUPAoI2Cj//Aow8Cn4FHIQV/AogECJAQFEgIFH/YFE+IFE+AFFv4FB/1/8AFDn4FEj+AAoZECApkAAoZTCAQgICDRE/4EDQYQ6Bg6VCj/8n6bDKgSzCAoK/DQQYqCbooWCA="))
 )};
+var Nonflame = {
+  width : 48, height : 48, bpp : 1,
+  transparent : 0,
+  palette : new Uint16Array([65535,1887]),
+  buffer : require("heatshrink").decompress((atob("AAXAAgcBAokDAovgAocHAokPAovwAon4Aon8Aon+Aon/AoeP/+AIAXP/48CAoQwCgfn/4wCg4FHGwUPAoI2Cj//Aow8Cn4FHIQV/AogECJAQFEgIFH/YFE+IFE+AFFv4FB/1/8AFDn4FEj+AAoZECApkAAoZTCAQgICDRE/4EDQYQ6Bg6VCj/8n6bDKgSzCAoK/DQQYqCbooWCA="))
+)};
+var eco = {
+  width : 48, height : 48, bpp : 1,
+  transparent : 0,
+  palette : new Uint16Array([65535,42976]),
+  buffer : require("heatshrink").decompress((atob("AA8QAol4Aon4AgcBAokHAokP/+AAoUf/4MDv///4FCAgP/4AiBAoXwgEDAoQYBAof8CIn+DogkCFIQFCGoIABHoMPEIN/AoJNCh42CFoQFBMofgAQNwAQNgPo4AMhACBgwCBhyCCIYQCBGIUfIAMDNwMfGgMBMQMfBAJrDIYRxPEgM/Tgh3DAoMHCIicDWggpCYwwrBIIIMDQQQFCbwZlDAAUePo4AFA"))
+)};
+
 const fish1 = [img11, img12];
 const fish2 = [img21, img22];
 const fish3 = [img31, img32];
@@ -261,11 +275,8 @@ function Fishers() {
       cMsgX = 180;
     }
   }
-    if (dayOfWeekStr == "sat"){
-        if (hours == 13){
-//  if (dayOfWeekStr == "tue" || dayOfWeekStr == "thu"){
-//        if (hours == 7 && minutes >= 0 && minutes <= 30){
-
+    if (hours == 7 && minutes >= 6 && minutes <= 30){
+     if (dayOfWeekStr == "mon" || dayOfWeekStr == "thu" || dayOfWeekStr == "sat"){
         g.clearRect(14,25,160,160);
         g.clearRect(65,90,100,100);
         g.drawImage(trash,55,80,true);
@@ -299,7 +310,12 @@ function Fishers() {
       poiY = 80;
     }
      if (poiY % 10 !== 0){
-      g.drawImage(flame,90,poiY);
+             if(dayOfWeekStr == "mon" || dayOfWeekStr == "thu"){
+                g.drawImage(flame,90,poiY);
+             }
+             if(dayOfWeekStr == "sat"){
+                g.drawImage(Nonflame,90,poiY);
+             }
     }
      if (cMsgX <= -100){
       cMsgX = 180;
