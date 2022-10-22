@@ -73,10 +73,15 @@ var coffee = {
   transparent : 0,
   buffer : require("heatshrink").decompress((atob("AGN////AwcDAwP//AHCj4HC/wWFAAOAA4IGD//ggEB//wEQQDDEYYHBg4rDAgUHBQI7D8AHG/AXF//8g5DDJYP+BQPAIYf+LwYGC/4HF/E/A5vwA59/N4IHEvwHG/wHFK4IHHS4qxCA4p9BV4hsCA4q/GPYgeEN40Ah4+Gcwf//onBn+HCwd/A4IgD+EfwBwE+EP4F8HAbVB4AxBJAXAgfgA4nwA4JJBF4YPDA44XFF4JRCF4V+NIT6BH4M/wD/CKoOAj6CCRgQRBFAIABgYZBg//DAU/P4JmBAYILBJoKnISAgjDUwgACVIQGDAFwA="))
 )};
-var rash = {
+var trash = {
   width : 64, height : 64, bpp : 1,
   transparent : 0,
-  buffer : require("heatshrink").decompress((atob("AAfgAwsH/AHFh/8A43+A4sfjwNE//+hwNE///74HG/4HDn4HC4AHGIAYHDHAYHDDAcBA4fwIAggFgF/A4JhEDIRpFDIJxGv4HGgIHGgEIViJ3DJ4ZfEA5QXHA/4H08AHJcwYH/A/HAA4MHA60DA4eAA4MBA4YGBAAIGC/wFB"))
+  buffer : require("heatshrink").decompress((atob("AAU//AHG/gHFv/+A4t8nwHMgP//+AEwgHBEAcPAwIAB+AtCA4f/A4IGEA4IlCAAeAA54fHACAXHA55aCMgQHxuAHDhwHCg0BwFgA4cOA4IDBA8N4F4ceA8M4A5ccA7UHA4PgA7U8A4c8A7McA5c4A4UDA4PAA4bfDA7SaCVgQHJh+AAYMB+ADBg//AAXgA4MDA4fADYQHDAoIA=="))
+)};
+var flame = {
+  width : 48, height : 48, bpp : 3,
+  transparent : 0,
+  buffer : require("heatshrink").decompress((atob("AA0BCKFJCB8CCMUSCPMkCKOACJkgUgIROkmSAQIRvWYIRDdJoRNpARHgIyHCIUJCISACAQJWFCJI4GyQRIAoJuEggRHEAIRQwQCByARDBYQRGAQQRHkChCEAQRKYQgRQUguSCASDBCIxKFCJKeDCJ4ACEwQRFoACBSQQLFApAAFCNKPCCJBZFCIVACJKzGCMMERgwACd4QRVgDCBCA0Cd4QRGaggABiQRHBBAaIFgR0GHw5QCVQawCMRALCCgQCCTBDgCCIrgISQQRERgpuINBA4JIg4"))
 )};
 const fish1 = [img11, img12];
 const fish2 = [img21, img22];
@@ -87,6 +92,7 @@ const fish6 = [img61, img62];
 var coffeeMsg = "let's take a break!";
 var TrashMsg = "Trash,BURN!";
 var mokuY = 80;
+var poiY = 80;
 var cMsgX = 100;
 var msgCnt1 = 0;
 var msgCnt2 = 0;
@@ -255,11 +261,12 @@ function Fishers() {
       cMsgX = 180;
     }
   }
-    if (dayOfWeekStr == "tue" || dayOfWeekStr == "thu"){
-        if (hours == 8 && minutes >= 10 && minutes <= 15){
+    if (dayOfWeekStr == "sat"){
+        if (hours == 13){
+//  if (dayOfWeekStr == "tue" || dayOfWeekStr == "thu"){
+//        if (hours == 7 && minutes >= 0 && minutes <= 30){
 
         g.clearRect(14,25,160,160);
-        g.drawImage(moku,73,mokuY,{scale:0.8});
         g.clearRect(65,90,100,100);
         g.drawImage(trash,55,80,true);
         g.drawString(TrashMsg,cMsgX,140,true);
@@ -285,16 +292,18 @@ function Fishers() {
         msgCnt2++;
       }
     }
-    mokuY = mokuY - 3;
+    poiY = poiY - 5;
     cMsgX = cMsgX - 7;
 
-    if (mokuY <= 50){
-      mokuY = 80;
+    if (poiY <= 30){
+      poiY = 80;
     }
-    if (cMsgX <= -100){
+     if (poiY % 10 !== 0){
+      g.drawImage(flame,90,poiY);
+    }
+     if (cMsgX <= -100){
       cMsgX = 180;
     }
-   
    }
   }
 }
