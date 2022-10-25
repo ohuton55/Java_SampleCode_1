@@ -91,9 +91,8 @@ var Nonflame = {
   buffer : require("heatshrink").decompress((atob("AAXAAgcBAokDAovgAocHAokPAovwAon4Aon8Aon+Aon/AoeP/+AIAXP/48CAoQwCgfn/4wCg4FHGwUPAoI2Cj//Aow8Cn4FHIQV/AogECJAQFEgIFH/YFE+IFE+AFFv4FB/1/8AFDn4FEj+AAoZECApkAAoZTCAQgICDRE/4EDQYQ6Bg6VCj/8n6bDKgSzCAoK/DQQYqCbooWCA="))
 )};
 var eco = {
-  width : 48, height : 48, bpp : 1,
+  width : 48, height : 48, bpp : 3,
   transparent : 0,
-  palette : new Uint16Array([65535,42976]),
   buffer : require("heatshrink").decompress((atob("AAtJgGSpMkyAQKgQOBCIWSoARJiQRFpARJBwYCDCKMgCA8EKwcJCJYgDCIkkCJeAgI4ECAoLEwAXECJYpFCIxTGL4gRQHYJZISowRHDoSVGa5LRDR5YABepQASRgYOKBYQRDcBEAgQLDCJgLEeR4RMeQr4GCJTUDcA4vEyARMfwgCBNZQRIUBIRCAQgRQfAYAGiQOCLIQRKYoJrEoAOGiARFSoQRHQYatDCIJ6HCIqnFbQiMDBBoaRCIq/DCIz4EVoqVDCKiYCX46VCEZIRRVoprLVgpBECIq2DABLFEABoRReoIAoA="))
 )};
 
@@ -279,17 +278,16 @@ function Fishers() {
     if (hours == 12 && minutes >= 6 && minutes <= 50){
      if (dayOfWeekStr == "mon" || dayOfWeekStr == "thu" || dayOfWeekStr == "sat"){
 		 if (dayOfWeekStr == "sat"){
-			 TrashMsg = "Let's trash for ECO!"
+			 TrashMsg = "Let's trash for ECO!";
 		 }
-        g.clearRect(14,25,160,160);
-        g.clearRect(65,90,100,100);
-        g.drawImage(trash,55,80,true);
-        g.drawString(TrashMsg,cMsgX,140,true);
+        	g.clearRect(14,25,160,160);
+        	g.clearRect(65,90,100,100);
+        	g.drawImage(trash,55,80,true);
+        	g.drawString(TrashMsg,cMsgX,140,true);
 		if(dayOfWeekStr == "mon"){
-			TrashMsg2 = "PetBottle,BinKan"
+			TrashMsg2 = "PetBottle,Bin and Kan";
 			g.drawString(TrashMsg2,cMsgX - 20, 60,true);
 		}
-		
         g.clearRect(0,140,14,155);
         g.clearRect(160,140,180,155);
         g.drawString(hours + ":" + minutes,17,27,true);
@@ -331,9 +329,9 @@ function Fishers() {
     }
      if (cMsgX <= -100){
       cMsgX = 180;
-    }
-   }
-  }
+  	}
+  }	
+ }
 }
 
 g.clear();
