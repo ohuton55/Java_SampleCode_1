@@ -94,7 +94,7 @@ var eco = {
   width : 48, height : 48, bpp : 1,
   transparent : 0,
   palette : new Uint16Array([65535,42976]),
-  buffer : require("heatshrink").decompress((atob("AA8QAol4Aon4AgcBAokHAokP/+AAoUf/4MDv///4FCAgP/4AiBAoXwgEDAoQYBAof8CIn+DogkCFIQFCGoIABHoMPEIN/AoJNCh42CFoQFBMofgAQNwAQNgPo4AMhACBgwCBhyCCIYQCBGIUfIAMDNwMfGgMBMQMfBAJrDIYRxPEgM/Tgh3DAoMHCIicDWggpCYwwrBIIIMDQQQFCbwZlDAAUePo4AFA"))
+  buffer : require("heatshrink").decompress((atob("AAtJgGSpMkyAQKgQOBCIWSoARJiQRFpARJBwYCDCKMgCA8EKwcJCJYgDCIkkCJeAgI4ECAoLEwAXECJYpFCIxTGL4gRQHYJZISowRHDoSVGa5LRDR5YABepQASRgYOKBYQRDcBEAgQLDCJgLEeR4RMeQr4GCJTUDcA4vEyARMfwgCBNZQRIUBIRCAQgRQfAYAGiQOCLIQRKYoJrEoAOGiARFSoQRHQYatDCIJ6HCIqnFbQiMDBBoaRCIq/DCIz4EVoqVDCKiYCX46VCEZIRRVoprLVgpBECIq2DABLFEABoRReoIAoA="))
 )};
 
 const fish1 = [img11, img12];
@@ -105,6 +105,7 @@ const fish5 = [img51, img52];
 const fish6 = [img61, img62];
 var coffeeMsg = "let's take a break!";
 var TrashMsg = "Trash,BURN!";
+var TrashMsg2 = null;
 var mokuY = 80;
 var poiY = 80;
 var cMsgX = 100;
@@ -275,12 +276,20 @@ function Fishers() {
       cMsgX = 180;
     }
   }
-    if (hours == 7 && minutes >= 6 && minutes <= 30){
+    if (hours == 12 && minutes >= 6 && minutes <= 50){
      if (dayOfWeekStr == "mon" || dayOfWeekStr == "thu" || dayOfWeekStr == "sat"){
+		 if (dayOfWeekStr == "sat"){
+			 TrashMsg = "Let's trash for ECO!"
+		 }
         g.clearRect(14,25,160,160);
         g.clearRect(65,90,100,100);
         g.drawImage(trash,55,80,true);
         g.drawString(TrashMsg,cMsgX,140,true);
+		if(dayOfWeekStr == "mon"){
+			TrashMsg2 = "PetBottle,BinKan"
+			g.drawString(TrashMsg2,cMsgX - 20, 60,true);
+		}
+		
         g.clearRect(0,140,14,155);
         g.clearRect(160,140,180,155);
         g.drawString(hours + ":" + minutes,17,27,true);
@@ -316,6 +325,9 @@ function Fishers() {
              if(dayOfWeekStr == "sat"){
                 g.drawImage(Nonflame,90,poiY);
              }
+			 if(dayOfWeekStr == "mon" || dayOfWeekStr == "sat"){
+                g.drawImage(eco,40,poiY + 10);
+			}
     }
      if (cMsgX <= -100){
       cMsgX = 180;
