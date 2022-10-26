@@ -2,10 +2,14 @@ function getImage() {
     return
     require("heatshrink").decompress(atob("mUywkEogA6IggWRoBeGLZ4XBgMjn//mcQDJ4XBiX/AAfzDJwXBiYXEAAPyJpsAgQXGAAMgQJdAgJeBAA/xGRcAj4XIMoK0KGAIsHNIZ+CGQ4wHCIQFCmAyJgBhFLoYiCDBNASQ3wCAUPAwpLFoBJGDCBJGJRhLESYyoEEYQYIMQ6uLJYlAK4QAKcAgYFexRpGDAsAl4YMkAYFMgSUHAAvyC4wYP+Z6FDAoXKmYXIDBfyiIVIDBiOGDCC/GDBZ8FUw4YPGB4YDcAnwDCNAj4YDU5IAFggYCh4YDGB4YDgTDDBgcD/8xDBdEgLEHHBYXCSwgYDGAIABmAYLPoaUDNYacHJIZkEDChLDJR4XEDAIrBDAaEDMRZLCCQKuGGA5JFGQR+BbxoXGGQJlBiD2OGQ8CYBAwLGQcBGCgZDC6oZLC5oZJC56BDO5oAx"));
 }
-
+const idle = ["idle1.png", "idle2.png", "idle3.png", "idle4.png"];
+var i = 0;
 function getBgimg() {
-    g.drawImage(require("Storage").read("myapps_bg.img"), 0, 0);
-    g.setColor(1, 1, 1);
+    g.setColor(0x0000FF);
+	g.fillRect(0,0,170,170);
+	g.setColor(1, 1, 1);
+	g.drawRect(0,0,170,170);
+
     g.setFont("Vector", 40);
 }
 
@@ -55,6 +59,10 @@ function countDown() {
     g.drawString("Now", 130, 60);
     g.setFont("6x8", 3);
     g.drawString("Counting", 90, 100);
+	g.drawImage(require("Storage").read(idle[i++]), 0, 85, {scale:2});
+	if (i == 4) {
+    	i = 0;
+	}
 }
 
 
