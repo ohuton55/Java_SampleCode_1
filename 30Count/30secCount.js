@@ -6,10 +6,9 @@ const idle = ["idle1.png", "idle2.png", "idle3.png", "idle4.png"];
 var i = 0;
 function getBgimg() {
     g.setColor(0x0000FF);
-	g.fillRect(0,0,170,170);
-	g.setColor(1, 1, 1);
-	g.drawRect(0,0,170,170);
-
+    g.fillRect(0,0,170,170);
+    g.setColor(1, 1, 1);
+    g.drawRect(0,0,170,170);
     g.setFont("Vector", 40);
 }
 
@@ -23,7 +22,7 @@ setInterval(draw, 170);
 
 
 //First Application(Timer)
-var counter = 30;
+var counter = 360;
 var counterInterval;
 
 function outOfTime() {
@@ -35,7 +34,9 @@ function outOfTime() {
     //setTimeout(outOfTime, 10000);
     getBgimg();
 }
-
+var i = 0;
+const idle = ["idle1.png", "idle2.png", "idle3.png", "idle4.png"];
+var i = 0;
 function countDown() {
     counter--;
     // Out of time
@@ -59,15 +60,16 @@ function countDown() {
     g.drawString("Now", 130, 60);
     g.setFont("6x8", 3);
     g.drawString("Counting", 90, 100);
-	g.drawImage(require("Storage").read(idle[i++]), 0, 85, {scale:2});
+    g.clearRect(0,85,20,105);
+    g.drawImage(require("Storage").read(idle[i++]), 0, 85, {scale:2});
 	if (i == 4) {
-    	i = 0;
+        	i = 0;
 	}
 }
 
 
 function startTimer() {
-    counter = 30;
+    counter = 360;
     countDown();
     getBgimg();
     if (!counterInterval)
