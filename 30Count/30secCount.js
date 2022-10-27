@@ -65,7 +65,6 @@ function countDown() {
 	}
 }
 
-
 function startTimer() {
     counter = 30;
     countDown();
