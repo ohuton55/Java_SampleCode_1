@@ -121,7 +121,7 @@ function GoRabit() {
   if (x < 10) {
     x = 180;
   }
-  g.drawImage(rabit, x, y,{scale:0.7});
+  g.drawImage(rabit, x, y,{scale:0.7,rotate:70});
 }
 Setting();
 MakeDays();
