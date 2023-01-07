@@ -4,34 +4,10 @@
     </head>
     <body>
         <script src="https://www.puck-js.com/puck.js"></script>
+        <script src="DataStreaming.js"></script>
         <button id="butnConnect">Connect</button>
         <p>x: <span class="bar"><span id="barX"></span></span></p>
         <p>y: <span class="bar"><span id="barY"></span></span></p>
         <p>z: <span class="bar"><span id="barZ"></span></span></p>
-        <script> //Code to upload to Bangle.js
-            var BANGLE_CODE = `
-                Bangle.on('accel',function(a) {
-                    var d = [
-                       "A",
-                       Math.round(a.x*100),
-                       Math.round(a.y*100),
-                       Math.round(a.z*100)
-                    ];
-                    Bluetooth.println(d.join(","));
-                })
-            `;
-            // When we click the connect button...
-            var connection;
-            document.getElementById("btnConnect").addEventListener("click", function() {
-            // disconnect if connected already
-            if (connection) {
-                connection.close();
-                connection = undefinded;
-            }
-            //
-                                                })
-        </script>
-        <style>
-        </style>
     </body>
 </html>
