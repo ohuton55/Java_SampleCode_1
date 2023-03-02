@@ -1,8 +1,12 @@
-
 const idle = ["idle1.png", "idle2.png", "idle3.png", "idle4.png"];
+const jump = ["idle1.png", "idle2.png", "idle3.png", "idle4.png"];
+var imgPattern = idle;
 var i = 0;
 var ang = 0;
 var bgang = 0;
+var BTNU;
+BTNU = BTN1;
+var jumpCnt = 0;
 
 function CatFight() {
   g.clearRect(0,22,176,176);
@@ -14,6 +18,7 @@ function CatFight() {
   var hours = date.getHours();
   var minutes = date.getMinutes();
 
+
   bgang -= 1;
   g.drawImage(require("Storage").read("catBgimg2.png"), bgang, 70, {scale:2});
   if (bgang <= -160) {
@@ -23,7 +28,19 @@ function CatFight() {
     i = 0;
   }
   ang += 0.05;
-  g.drawImage(require("Storage").read(idle[i++]), 0, 85, {scale:2});
+  if(BTNU.read()){
+    imgPattern = jump;
+    jumpCnt += 1;
+  }
+  if(imgPattern == idle){
+    g.drawImage(require("Storage").read(idle[i++]), 0, 85, {scale:2});
+  }else{
+    g.drawImage(require("Storage").read(jump[i++]), 0, 50, {scale:2});
+  }
+  if(jumpCnt >= 1){
+    jumpCnt = 0;
+    imgPattern = idle;
+  }
   g.drawImage(require("Storage").read("sun.png"), 150, 50, {rotate: ang});
 
   g.setColor(1, 1, 1);
@@ -41,4 +58,5 @@ var secondInterval = setInterval(CatFight, 200);
 Bangle.setUI("clock");
 Bangle.loadWidgets();
 Bangle.drawWidgets();
+
 
