@@ -271,7 +271,7 @@ function Fishers() {
     if (mokuY <= 50){
       mokuY = 80;
     }
-    if (cMsgX <= -100){
+    if (cMsgX <= -150){
       cMsgX = 180;
     }
   }
